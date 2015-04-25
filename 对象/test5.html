@@ -1,0 +1,39 @@
+<html>
+<head>
+	<meta charset=utf-8>
+</head>
+<body>
+<script>
+//构造方法创建对象
+function Rect(w, h) {
+	this.width = w; this.height = h;	//数据类型
+	this.area = function() {			//方法
+ 		return this.width * this.height;
+// 		return w * h;	
+//在第一次调用area（）方法时，输出正常。
+//但是在改变了原有对象的属性之后，再次输出的值并没有改变。
+//由上可以得知：如果采用return w * h； 的方式输出。方法就被定死了。
+//因为参加运算的数值是创建对象时输入的数值，无法被改变。
+	}
+}
+var r = new Rect(20, 10);
+alert(r.area());
+r.width = 30;	//直接修改对象内的数据
+alert(r.area());
+
+for( var x in r) {
+	alert(x+"="+r[x]);    //对于对象内的数据和方法都会输出。
+						  //数据是输出具体的数值，而方法则是给出具体的代码，而且其中的注释一并输出
+}
+
+//直接创建对象
+var o = new Object();
+o.name = "John Mike";
+o.age = 30;
+o.salary = 300;
+for ( var x in o ) {
+	alert( x+"="+o[x]);
+}
+</script>
+</body>
+</html>

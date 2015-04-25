@@ -1,0 +1,28 @@
+<html>
+<head>
+	<meta charset=utf-8>
+</head>
+<body>
+<script>
+//原型的问题
+function Person () {}		//构造方法为空
+Person.prototype = {
+	constructor : Person,
+	name : "Nicholas",
+	age : 29,
+	job : "Software Engineer",
+	friends : ["Shelby", "Court"],
+	sayName : function () {
+		alert(this.name);
+	}
+};	
+
+var person1 = new Person();
+var person2 = new Person();
+person1.friends.push("Van");	
+//对一个对象的数组属性进行压栈操作，改变的是其原型对象，见图
+alert(person1.friends);	//"Shelby,Court,Van"
+alert(person2.friends);	//"Shelby,Court,Van"
+</script>
+</body>
+</html>

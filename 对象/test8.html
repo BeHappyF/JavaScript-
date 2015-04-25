@@ -1,0 +1,30 @@
+<html>
+<head>
+	<meta charset=utf-8>
+</head>
+<body>
+<script>
+//原型问题的解决方法：组合原型和构造方法
+function Person (name, age, job) {
+	this.name = name;
+	this.age = age;
+	this.job = job;
+	this.friends = ["Shelby", "Court"];  //构造方法中不能初始化
+}		
+Person.prototype = {
+	constructor : Person,
+	sayName : function () {
+		alert(this.name);
+	}
+};	
+
+var person1 = new Person("Nicholas", 29, "Software Engineer");
+var person2 = new Person("Greg", 28, "Doctor");
+person1.friends.push("Van");	//对一个对象的数组属性进行压栈操作
+alert(person1.friends);			//"Shelby,Court,Van"
+alert(person2.friends);			//"Shelby,Court"
+alert(person1.friends === person2.friends); //false，数组的比较为“＝＝＝”
+alert(person1.sayName === person2.sayName);	//true，函数的比较为“＝＝＝”
+</script>
+</body>
+</html>
